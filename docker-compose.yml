@@ -1,9 +1,11 @@
 version: '3'
 
+# docker_volumeを使うことで、他のコンテナからもdbを使いやすい
 volumes:
   db-data:
 
 services:
+  # コンテナ１
   web:
     # カレントディレクトリのdockerfileをbuildする
     build: .
@@ -23,6 +25,7 @@ services:
     links:
       - db
 
+  # コンテナ２
   db:
     image: postgres
     volumes:
